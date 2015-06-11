@@ -30,9 +30,10 @@ urlpatterns = [
     url(r'^resume/work/$', 'main.views.experience_work', name='experience_work'),
     url(r'^resume/education/$', 'main.views.experience_education', name='experience_education'),
     url(r'^resume/travel/$', 'main.views.experience_travel', name='experience_travel'),
+    url(r'^contact/$', 'main.views.contact', name='contact'),
     
     # STATIC PAGES
-    url(r'^(terms|contact|)$', 'main.views.staticpage', name='staticpage'),    
+    url(r'^(terms|robots.txt)$', 'main.views.staticpage', name='staticpage'),    
     
     # ADMIN
     url(r'^admin/', include(admin.site.urls)),

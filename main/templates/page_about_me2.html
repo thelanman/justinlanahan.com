@@ -23,7 +23,7 @@
             <br>
             {% if not valid_code %}
                 <form action='/access_code/'  method='POST'>
-                    <div class="input-group col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                    <div class="input-group col-lg-3 col-md-3 col-sm-5 col-xs-6">
                         <input type="text" class="form-control" name="access_code" placeholder="Input Access Code ...">
                          {% csrf_token %}
                         <span class="input-group-btn">
@@ -51,7 +51,6 @@
                 <ul class="list-inline social-icons-v1">
                     <li><a href="https://github.com/thelanman"><i title="GitHub" class="rounded-x fa fa-github"></i></a></li>
                     <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="rounded-x fa fa-google-plus"></i></a></li>
                     <li><a href="#"><i class="rounded-x fa fa-linkedin"></i></a></li>
                 </ul>
             </div>
@@ -115,7 +114,7 @@
             <div id="grid-container" class="cbp-l-grid-gallery">
                 <div class="cbp-item python api">
                     <a href="/assets/ajax/cube-portfolio/project1.html" class="cbp-caption cbp-singlePageInline"
-                       data-title="World Clock Widget<br>by Paul Flavius Nechita">
+                       data-title="Reddit API<br>Saving Saved Posts">
                         <div class="cbp-caption-defaultWrap">
                             <img src="/assets/img/portfolio/portfolio-01.png" alt="">
                         </div>
@@ -123,7 +122,7 @@
                             <div class="cbp-l-caption-alignLeft">
                                 <div class="cbp-l-caption-body">
                                     <div class="cbp-l-caption-title">Reddit API</div>
-                                    <div class="cbp-l-caption-desc">Post Saving</div>
+                                    <div class="cbp-l-caption-desc">Saving Saved Posts</div>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +219,7 @@
         <div class="container">
             <h2>Let's Work Together!</h2>
             <p>I am eager for new opportunities to build relationships and strengthen the community around me. Let me know what you would like to collaborate on and we will make it happen!</p>
-            <a href="#" class="btn-u">Get In Touch</a>
+            <a href="/contact" class="btn-u">Get In Touch</a>
         </div>
     </div>
     <!--=== End Call To Action v2 ===-->

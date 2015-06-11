@@ -1,10 +1,11 @@
 import datetime
 
 from django.shortcuts import render, redirect, render_to_response
+from django.http import HttpResponse
 from django.template import RequestContext
 from django.utils import timezone
 
-from models import AccessCode, Visitor
+from models import AccessCode, Visitor, Message
 
 
 def get_client_ip(request):
@@ -50,7 +51,6 @@ def portfolio(request):
 def blog(request):
     return render(request, 'blog_medium_right_sidebar.html', {'valid_code': check_code(request)})
     
-    
 def interests(request):
     return render(request, 'interests_3_columns_grid.html', {'valid_code': check_code(request)})
     
@@ -60,7 +60,7 @@ def access_code(request):
         try:
             ac = AccessCode.objects.get(code=request.POST.get('access_code', ''))
         except:
-            return render(request, 'access_code.html', {'error': 'Access code is invalid or expired.'})
+            return render(request, 'access_code.html', {'valid_code': check_code(request), 'error': 'Access code is invalid or expired.'})
         remote_ip = get_client_ip(request)
         ua = request.META['HTTP_USER_AGENT']
         code = request.POST['access_code']
@@ -75,23 +75,46 @@ def access_code(request):
         return redirect(request.POST.get('next', '/'))
     return render(request, 'access_code.html', {'valid_code': check_code(request), 'next': request.GET.get('next', '/')})    
     
-@require_code('/experience/overview')   
+def contact(request):
+    if request.method == 'POST':
+        ip = get_client_ip(request)
+        ua = request.META['HTTP_USER_AGENT']
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        message = request.POST.get('message', '')
+        msg = None
+        try:
+            print 'TRYING MESSAGE', name, email, message
+            msg = Message(ip=ip, ua=ua, name=name, email=email, message=message)
+            msg.save()
+            print 'MESSAGE SAVED'
+        except Exception, e:
+            print 'ERROR', str(e)
+            return render(request, 'page_contact2.html', {'valid_code': check_code(request), 'error': 'invalid form'})
+        return render(request, 'page_contact2.html', {'valid_code': check_code(request), 'success': 'Thanks for the message'})
+    print 'MESSAGE get'
+    return render(request, 'page_contact2.html', {'valid_code': check_code(request)})
+    
+    
+@require_code('/resume/overview')   
 def experience_overview(request):
     return render(request, 'private/page_profile_me.html', {'valid_code': check_code(request)})    
 
-@require_code('/experience/work')   
+@require_code('/resume/work')   
 def experience_work(request):
     return render(request, 'private/shortcode_timeline2-work.html', {'valid_code': check_code(request)})
 
-@require_code('/experience/education')     
+@require_code('/resume/education')     
 def experience_education(request):
     return render(request, 'private/shortcode_timeline2-education.html', {'valid_code': check_code(request)})
 
-@require_code('/experience/travel')     
+@require_code('/resume/travel')     
 def experience_travel(request):
     return render(request, 'shortcode_maps_vector.html', {'valid_code': check_code(request)})
     
 def staticpage(request, name):
+    if name == 'robots.txt':
+        return HttpResponse('User-agent: *\nDisallow: /resume', content_type='text/plain')
     return render(request, name + '.html', {'valid_code': check_code(request)})    
 
 def handler404(request):

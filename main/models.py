@@ -28,14 +28,14 @@ class Visitor(models.Model):
 class Message(models.Model):
     ip = models.CharField(max_length=15)
     ua = models.TextField()
-    name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
+    name = models.CharField(blank=False, max_length=50)
+    email = models.EmailField(blank=False, max_length=100)
     created = models.DateTimeField(auto_now_add=True)
-    message = models.TextField()
+    message = models.TextField(blank=False)
     
     def __unicode__(self):
-        return u'Message(%s - %s)' % (self.created_dt.strftime('%Y-%m-%d %H:%M'), self.ip)
+        return u'Message(%s - %s)' % (self.created.strftime('%Y-%m-%d %H:%M'), self.ip)
  
     def __repr__(self):
-        return 'Message(%s - %s)' % (self.created_dt.strftime('%Y-%m-%d %H:%M'), self.ip)
+        return 'Message(%s - %s)' % (self.created.strftime('%Y-%m-%d %H:%M'), self.ip)
  

@@ -16,196 +16,161 @@
     <link rel="stylesheet" href="/assets/css/custom.css">
 
     {% endblock %}
-    {% block portfolio_active %}active{% endblock %}
+    {% block interests_active %}active{% endblock %}
     {% block body %}
-    <!--=== Breadcrumbs v3 ===-->
-    <div class="breadcrumbs-v3 img-v1">
-        <div class="container text-center">
-            <p>Portfolio</p>
-            <h1>Portfolio 3 Columns Grid</h1>
-        </div><!--/end container-->
-    </div>
-    <!--=== End Breadcrumbs v3 ===-->
+    <!--=== Breadcrumbs ===-->
+    <div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left">My Interests</h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Interests</li>
+            </ul>
+        </div>
+    </div><!--/breadcrumbs-->
+    <!--=== End Breadcrumbs ===-->
 
     <!--=== Cube-Portfdlio ===-->
     <div class="cube-portfolio container margin-bottom-60">
         <div class="content-xs">
             <div id="filters-container" class="cbp-l-filters-text content-xs">
                 <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> All </div> |
-                <div data-filter=".identity" class="cbp-filter-item"> Identity </div> |
-                <div data-filter=".web-design" class="cbp-filter-item"> Web Design </div> |
-                <div data-filter=".graphic" class="cbp-filter-item"> Graphic </div> |
-                <div data-filter=".logos" class="cbp-filter-item"> Logo </div>
+                <div data-filter=".recreation" class="cbp-filter-item"> Recreation </div> |
+                <div data-filter=".research" class="cbp-filter-item"> Research </div> |
             </div><!--/end Filters Container-->
         </div>
 
         <div id="grid-container" class="cbp-l-grid-agency">
-            <div class="cbp-item graphic">
+            <div class="cbp-item recreation">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/img3.jpg" alt="">
+                        <img src="/assets/img/main/piano.png" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
                             <div class="cbp-l-caption-body">
-                                <ul class="link-captions">
-                                    <li><a href="portfolio_single_item.html"><i class="rounded-x fa fa-link"></i></a></li>
-                                    <li><a href="/assets/img/main/img3.jpg" class="cbp-lightbox" data-title="Design Object"><i class="rounded-x fa fa-search"></i></a></li>
-                                </ul>
-                                <div class="cbp-l-grid-agency-title">Design Object 01</div>
-                                <div class="cbp-l-grid-agency-desc">Web Design</div>
+                                <div class="cbp-l-grid-agency-title">Piano</div>
+                                <div class="cbp-l-grid-agency-desc">Improv & Composition</div>       
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="cbp-item web-design logos">
+            <div class="cbp-item recreation">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/img8.jpg" alt="">
+                        <img src="/assets/img/main/sailing.png" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
                             <div class="cbp-l-caption-body">
-                                <ul class="link-captions">
-                                    <li><a href="portfolio_single_item.html"><i class="rounded-x fa fa-link"></i></a></li>
-                                    <li><a href="/assets/img/main/img8.jpg" class="cbp-lightbox" data-title="Design Object"><i class="rounded-x fa fa-search"></i></a></li>
-                                </ul>
-                                <div class="cbp-l-grid-agency-title">Design Object 02</div>
-                                <div class="cbp-l-grid-agency-desc">Web Design</div>
+                                <div class="cbp-l-grid-agency-title">Sailing</div>
+                                <div class="cbp-l-grid-agency-desc">Wind power!</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="cbp-item graphic logos">
+            <div class="cbp-item recreation">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/img9.jpg" alt="">
+                        <img src="/assets/img/main/gaming.png" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
                             <div class="cbp-l-caption-body">
-                                <ul class="link-captions">
-                                    <li><a href="portfolio_single_item.html"><i class="rounded-x fa fa-link"></i></a></li>
-                                    <li><a href="/assets/img/main/img9.jpg" class="cbp-lightbox" data-title="Design Object"><i class="rounded-x fa fa-search"></i></a></li>
-                                </ul>
-                                <div class="cbp-l-grid-agency-title">Design Object 03</div>
-                                <div class="cbp-l-grid-agency-desc">Web Design</div>
+                                <div class="cbp-l-grid-agency-title">Gaming</div>
+                                <div class="cbp-l-grid-agency-desc">Board & Video Games</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="cbp-item web-design graphic">
+            <div class="cbp-item recreation">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/img10.jpg" alt="">
+                        <img src="/assets/img/main/travel.png" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
                             <div class="cbp-l-caption-body">
-                                <ul class="link-captions">
-                                    <li><a href="portfolio_single_item.html"><i class="rounded-x fa fa-link"></i></a></li>
-                                    <li><a href="/assets/img/main/img10.jpg" class="cbp-lightbox" data-title="Design Object"><i class="rounded-x fa fa-search"></i></a></li>
-                                </ul>
-                                <div class="cbp-l-grid-agency-title">Design Object 04</div>
-                                <div class="cbp-l-grid-agency-desc">Web Design</div>
+                                <div class="cbp-l-grid-agency-title">Travel</div>
+                                <div class="cbp-l-grid-agency-desc">15 Countries Down, 180 to Go!</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="cbp-item identity web-design">
+            <div class="cbp-item research">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/img11.jpg" alt="">
+                        <img src="/assets/img/main/programming.png" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
                             <div class="cbp-l-caption-body">
-                                <ul class="link-captions">
-                                    <li><a href="portfolio_single_item.html"><i class="rounded-x fa fa-link"></i></a></li>
-                                    <li><a href="/assets/img/main/img11.jpg" class="cbp-lightbox" data-title="Design Object"><i class="rounded-x fa fa-search"></i></a></li>
-                                </ul>
-                                <div class="cbp-l-grid-agency-title">Design Object 05</div>
-                                <div class="cbp-l-grid-agency-desc">Web Design</div>
+                                <div class="cbp-l-grid-agency-title">Programming</div>
+                                <div class="cbp-l-grid-agency-desc">Web Dev, Automation, Scraping etc.</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="cbp-item identity web-design">
+            <div class="cbp-item research">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/img12.jpg" alt="">
+                        <img src="/assets/img/main/machinelearning.png" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
                             <div class="cbp-l-caption-body">
-                                <ul class="link-captions">
-                                    <li><a href="portfolio_single_item.html"><i class="rounded-x fa fa-link"></i></a></li>
-                                    <li><a href="/assets/img/main/img12.jpg" class="cbp-lightbox" data-title="Design Object"><i class="rounded-x fa fa-search"></i></a></li>
-                                </ul>
-                                <div class="cbp-l-grid-agency-title">Design Object 06</div>
-                                <div class="cbp-l-grid-agency-desc">Web Design</div>
+                                <div class="cbp-l-grid-agency-title">Machine Learning</div>
+                                <div class="cbp-l-grid-agency-desc">Neural Nets & Genetic Algos</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="cbp-item web-design identity">
+            <div class="cbp-item research">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/img18.jpg" alt="">
+                        <img src="/assets/img/main/investing.png" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
                             <div class="cbp-l-caption-body">
-                                <ul class="link-captions">
-                                    <li><a href="portfolio_single_item.html"><i class="rounded-x fa fa-link"></i></a></li>
-                                    <li><a href="/assets/img/main/img18.jpg" class="cbp-lightbox" data-title="Design Object"><i class="rounded-x fa fa-search"></i></a></li>
-                                </ul>
-                                <div class="cbp-l-grid-agency-title">Design Object 07</div>
-                                <div class="cbp-l-grid-agency-desc">Web Design</div>
+                                <div class="cbp-l-grid-agency-title">Investing</div>
+                                <div class="cbp-l-grid-agency-desc">Be the Boglehead!</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="cbp-item identity logo">
+            <div class="cbp-item recreation">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/img19.jpg" alt="">
+                        <img src="/assets/img/main/tennis.png" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
                             <div class="cbp-l-caption-body">
-                                <ul class="link-captions">
-                                    <li><a href="portfolio_single_item.html"><i class="rounded-x fa fa-link"></i></a></li>
-                                    <li><a href="/assets/img/main/img19.jpg" class="cbp-lightbox" data-title="Design Object"><i class="rounded-x fa fa-search"></i></a></li>
-                                </ul>
-                                <div class="cbp-l-grid-agency-title">Design Object 08</div>
-                                <div class="cbp-l-grid-agency-desc">Web Design</div>
+                                <div class="cbp-l-grid-agency-title">Sports</div>
+                                <div class="cbp-l-grid-agency-desc">Tennis, Racquetball & Disc Golf</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="cbp-item graphic">
+            </div>            
+            <div class="cbp-item research">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/img20.jpg" alt="">
+                        <img src="/assets/img/main/math.png" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
                             <div class="cbp-l-caption-body">
-                                <ul class="link-captions">
-                                    <li><a href="portfolio_single_item.html"><i class="rounded-x fa fa-link"></i></a></li>
-                                    <li><a href="/assets/img/main/img20.jpg" class="cbp-lightbox" data-title="Design Object"><i class="rounded-x fa fa-search"></i></a></li>
-                                </ul>
-                                <div class="cbp-l-grid-agency-title">Design Object 09</div>
-                                <div class="cbp-l-grid-agency-desc">Web Design</div>
+                                <div class="cbp-l-grid-agency-title">Number crunching</div>
+                                <div class="cbp-l-grid-agency-desc">For fun & Profit!</div>
                             </div>
                         </div>
                     </div>

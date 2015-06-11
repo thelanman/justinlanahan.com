@@ -9,7 +9,7 @@ class VisitorAdmin(admin.ModelAdmin):
     list_display = ('ip', 'datetime', 'access_code', 'visits')    
     
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('ip', 'email')    
+    list_display = ('ip', 'email', 'created')    
     
 admin.site.register(AccessCode, AccessCodeAdmin)
 admin.site.register(Visitor, VisitorAdmin)
