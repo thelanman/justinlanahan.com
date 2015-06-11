@@ -77,15 +77,15 @@ def access_code(request):
     
 @require_code('/experience/overview')   
 def experience_overview(request):
-    return render(request, 'page_profile_me.html', {'valid_code': check_code(request)})    
+    return render(request, 'private/page_profile_me.html', {'valid_code': check_code(request)})    
 
 @require_code('/experience/work')   
 def experience_work(request):
-    return render(request, 'shortcode_timeline2-work.html', {'valid_code': check_code(request)})
+    return render(request, 'private/shortcode_timeline2-work.html', {'valid_code': check_code(request)})
 
 @require_code('/experience/education')     
 def experience_education(request):
-    return render(request, 'shortcode_timeline2-education.html', {'valid_code': check_code(request)})
+    return render(request, 'private/shortcode_timeline2-education.html', {'valid_code': check_code(request)})
 
 @require_code('/experience/travel')     
 def experience_travel(request):
