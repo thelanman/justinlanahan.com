@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = private.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = private.DEBUG
+DEBUG = True
 
 ALLOWED_HOSTS = private.ALLOWED_HOSTS
 
@@ -135,8 +135,10 @@ USE_TZ = True
 
 STATIC_URL = '/assets/'
 
-#    STATICFILES_DIRS = ('/webapps/thor/thor_app/assets/',)
-STATIC_ROOT = '/webapps/thor/thor_app/assets/'
+if DEBUG:
+    STATICFILES_DIRS = ('/webapps/thor/thor_app/assets/',)
+else:
+    STATIC_ROOT = '/webapps/thor/thor_app/assets/'
 
 # Sessions
-SESSION_COOKIE_AGE = 60 * 60 * 2 # 2 hours
+SESSION_COOKIE_AGE = 60 * 60 * 24 # 1 day

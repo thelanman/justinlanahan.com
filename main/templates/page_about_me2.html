@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock%}
+
+{% block extra-head %}
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/assets/plugins/animate.css">
+    <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css">
+    <link rel="stylesheet" href="/assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/assets/css/custom.css">
+
+{% endblock %}
+
+{% block body %}
+    <!--=== Interactive Slider ===-->
+    <div class="breadcrumbs-v3 breadcrumbs-md img-v1">
+        <div class="container">
+            <h1>Justin Lanahan</h1>
+            <p>Motivated Professional</p>
+            <br>
+            {% if not valid_code %}
+                <form action='/access_code/'  method='POST'>
+                    <div class="input-group col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                        <input type="text" class="form-control" name="access_code" placeholder="Input Access Code ...">
+                         {% csrf_token %}
+                        <span class="input-group-btn">
+                            <button class="btn-u btn-default submit-code" type="submit"><i class="fa fa-unlock-alt"></i></button>
+                        </span>
+                    </div>
+                </form>
+            {% else %}
+            <p class="text-success" style="text-transform: none"><small>Access code valid. Welcome!</small></p>
+            {% endif %}
+        </div>
+    </div>
+    <!--=== End Interactive Slider ===-->
+
+    <!--=== Container Part ===-->
+    <div class="container content-sm">
+        <div class="row">
+            <!-- Social Network -->
+            <div class="col-md-6 md-margin-bottom-50">
+                <div class="headline-left margin-bottom-30">
+                    <h2 class="headline-brd heading-md">ABOUT <span class="color-green">ME</span></h2>
+                </div>
+                <p>I am a curious, adventurous, and eager creature. I am extremely passionate about the art of computer science and bettering myself and strengthening the organizations and people around me.</p>
+                <p>I always enjoy a challenge and am open to new opportunities. Do not hesitate to reach out to me for collaboration.</p><br>
+                <ul class="list-inline social-icons-v1">
+                    <li><a href="https://github.com/thelanman"><i title="GitHub" class="rounded-x fa fa-github"></i></a></li>
+                    <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="rounded-x fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="rounded-x fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+            <!-- End Social Network -->
+
+            <!-- Progress Bar -->
+            <div class="col-md-6 progress-box md-margin-bottom-50">
+                <div class="headline-left margin-bottom-30">
+                    <h2 class="headline-brd heading-md">MY <span class="color-green">SKILLS</span></h2>
+                </div>
+                <h3 class="heading-xs">Python <span class="pull-right">100%</span></h3>
+                <div class="progress progress-u progress-xxs">
+                    <div class="progress-bar progress-bar-dark" role="progressbar" data-width="100">
+                    </div>
+                </div>
+
+                <h3 class="heading-xs">Web Stack <span class="pull-right">80%</span></h3>
+                <div class="progress progress-u progress-xxs">
+                    <div class="progress-bar progress-bar-dark" role="progressbar" data-width="80">
+                    </div>
+                </div>
+
+                <h3 class="heading-xs">C / C++ <span class="pull-right">60%</span></h3>
+                <div class="progress progress-u progress-xxs">
+                    <div class="progress-bar progress-bar-dark" role="progressbar" data-width="60">
+                    </div>
+                </div>
+            </div>
+            <!-- End Progress Bar -->
+        </div><!--/end row-->
+    </div>
+    <!--=== End Container Part ===-->
+
+    <!--=== Quote v1 ===-->
+    <div class="quote-v1 parallaxBg">
+        <div class="container">
+            <p>Explicit is better than implicit. Simple is better than complex. Complex is better than complicated. In the face of ambiguity, refuse the temptation to guess. Now is better than never. Although never is often better than *right* now.</p>
+            <span>Tim Peters,<a href="https://www.python.org/dev/peps/pep-0020/"> import this</a></span>
+        </div>
+    </div>
+    <!--=== End Quote v1 ===-->
+
+    <!--=== Portfolio ===-->
+    <div class="container content-sm">
+        <div class="headline-center margin-bottom-30">
+            <h2 class="headline-brd heading-md">LATEST <span class="color-green">PROJECTS</span></h2>
+            <p class="space-lg-hor">All projects are open sourced on <span class="color-green">Github</span>. Please feel free to fork, comment and submit pull requests.</p>
+        </div>
+
+        <!-- Cube Portfolio -->
+        <div class="cube-portfolio container margin-bottom-20">
+            <div class="margin-bottom-30">
+                <div id="filters-container" class="cbp-l-filters-text">
+                    <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> All </div> |
+                    <div data-filter=".python" class="cbp-filter-item"> Python </div> |
+                    <div data-filter=".web-design" class="cbp-filter-item"> Web Design </div> |
+                    <div data-filter=".api" class="cbp-filter-item"> APIs </div>
+                </div><!--/end Filters Container-->
+            </div>
+
+            <div id="grid-container" class="cbp-l-grid-gallery">
+                <div class="cbp-item python api">
+                    <a href="/assets/ajax/cube-portfolio/project1.html" class="cbp-caption cbp-singlePageInline"
+                       data-title="World Clock Widget<br>by Paul Flavius Nechita">
+                        <div class="cbp-caption-defaultWrap">
+                            <img src="/assets/img/portfolio/portfolio-01.png" alt="">
+                        </div>
+                        <div class="cbp-caption-activeWrap">
+                            <div class="cbp-l-caption-alignLeft">
+                                <div class="cbp-l-caption-body">
+                                    <div class="cbp-l-caption-title">Reddit API</div>
+                                    <div class="cbp-l-caption-desc">Post Saving</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="cbp-item python api">
+                    <a href="/assets/ajax/cube-portfolio/project2.html" class="cbp-caption cbp-singlePageInline"
+                       data-title="Bolt UI<br>by Tiberiu Neamu">
+                        <div class="cbp-caption-defaultWrap">
+                            <img src="/assets/img/portfolio/portfolio-02.png" alt="">
+                        </div>
+                        <div class="cbp-caption-activeWrap">
+                            <div class="cbp-l-caption-alignLeft">
+                                <div class="cbp-l-caption-body">
+                                    <div class="cbp-l-caption-title">Board Game Geek API</div>
+                                    <div class="cbp-l-caption-desc">Game Rank Analytics</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="cbp-item python">
+                    <a href="/assets/ajax/cube-portfolio/project3.html" class="cbp-caption cbp-singlePageInline"
+                       data-title="WhereTO App<br>by Tiberiu Neamu">
+                        <div class="cbp-caption-defaultWrap">
+                            <img src="/assets/img/portfolio/portfolio-03.png" alt="">
+                        </div>
+                        <div class="cbp-caption-activeWrap">
+                            <div class="cbp-l-caption-alignLeft">
+                                <div class="cbp-l-caption-body">
+                                    <div class="cbp-l-caption-title">Market Simulation</div>
+                                    <div class="cbp-l-caption-desc">Data Analytics</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="cbp-item python">
+                    <a href="/assets/ajax/cube-portfolio/project4.html" class="cbp-caption cbp-singlePageInline"
+                       data-title="iDevices<br>by Tiberiu Neamu">
+                        <div class="cbp-caption-defaultWrap">
+                            <img src="/assets/img/portfolio/portfolio-04.png" alt="">
+                        </div>
+                        <div class="cbp-caption-activeWrap">
+                            <div class="cbp-l-caption-alignLeft">
+                                <div class="cbp-l-caption-body">
+                                    <div class="cbp-l-caption-title">Discrete Event Simulation</div>
+                                    <div class="cbp-l-caption-desc">System Modelling</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="cbp-item web-design python">
+                    <a href="/assets/ajax/cube-portfolio/project5.html" class="cbp-caption cbp-singlePageInline"
+                       data-title="Seemple* Music for iPad<br>by Tiberiu Neamu">
+                        <div class="cbp-caption-defaultWrap">
+                            <img src="/assets/img/portfolio/portfolio-05.png" alt="">
+                        </div>
+                        <div class="cbp-caption-activeWrap">
+                            <div class="cbp-l-caption-alignLeft">
+                                <div class="cbp-l-caption-body">
+                                    <div class="cbp-l-caption-title">Quantified Self</div>
+                                    <div class="cbp-l-caption-desc">Life Logging All the Things</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="cbp-item python">
+                    <a href="/assets/ajax/cube-portfolio/project6.html" class="cbp-caption cbp-singlePageInline"
+                       data-title="Remind~Me Widget<br>by Tiberiu Neamu">
+                        <div class="cbp-caption-defaultWrap">
+                            <img src="/assets/img/portfolio/portfolio-06.png" alt="">
+                        </div>
+                        <div class="cbp-caption-activeWrap">
+                            <div class="cbp-l-caption-alignLeft">
+                                <div class="cbp-l-caption-body">
+                                    <div class="cbp-l-caption-title">Machine Learning</div>
+                                    <div class="cbp-l-caption-desc">Optimize, optimize!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div><!--/end Grid Container-->
+        </div>
+        <!-- End Cube Portfolio -->
+    </div>
+    <!--=== End Portfolio ===-->
+
+    <!--=== Call To Action v2 ===-->
+    <div class="call-action-v2 parallaxBg">
+        <div class="container">
+            <h2>Let's Work Together!</h2>
+            <p>I am eager for new opportunities to build relationships and strengthen the community around me. Let me know what you would like to collaborate on and we will make it happen!</p>
+            <a href="#" class="btn-u">Get In Touch</a>
+        </div>
+    </div>
+    <!--=== End Call To Action v2 ===-->
+  
+{% endblock %}
+
+{% block extra-js %}
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
+<script type="text/javascript" src="/assets/plugins/jquery-appear.js"></script>
+<script type="text/javascript" src="/assets/plugins/jquery.parallax.js"></script>
+<script type="text/javascript" src="/assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+<!-- JS Customization -->
+<script type="text/javascript" src="/assets/js/custom.js"></script>
+<!-- JS Page Level -->
+<script type="text/javascript" src="/assets/js/app.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/progress-bar.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        $ = jQuery;
+        App.init();
+        App.initParallaxBg();
+        ProgressBar.initProgressBarHorizontal();
+   
+    });
+</script>
+{% endblock %} 

@@ -1,7 +1,8 @@
 # Custom
 private.py
-static/
-
+assets/
+log/
+main/templates/private
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
