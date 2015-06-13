@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Privacy Policy{% endblock %}
+{% block extra-head %}
+<!-- CSS Implementing Plugins -->
+<link rel="stylesheet" href="/assets/plugins/animate.css">
+<link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+<link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+<!-- CSS Customization -->
+<link rel="stylesheet" href="/assets/css/custom.css">
+{% endblock %}
+{% block body %}
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+	<div class="container">
+		<h1 class="pull-left">Privacy Policy</h1>
+		<ul class="pull-right breadcrumb">
+			<li><a href="/">Home</a></li>
+			<li class="active">Privacy</li>
+		</ul>
+	</div>
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+    <div class="container content">		
+    	<div class="row-fluid privacy">
+            <p>This site may collect information about your computer, including your IP address, operating system and browser type, for system administration and in order to create reports. This is statistical data about our users’ browsing actions and patterns, and does not identify any individual. </p>
+            
+            <h2><u>Cookies</u></h2>
+            <p>This site uses three kinds of cookies. </p>
+            <ol>
+                <li>Google Analytics</li>
+                <li>Cross-site Request Forgery Protection</li>
+                <li>Session Tracking</li>                
+            </ol>
+            <h3>Google Analytics (GA):</h4>
+            <p>GA is a web analytics tool that helps website owners understand how visitors engage with their website. Google Analytics customers can view a variety of reports about how visitors interact with their website so that they can improve it. </p>
+            <p>Like many services, Google Analytics uses first-party cookies to track visitor interactions as in our case, where they are used to collect information about how visitors use our site. We then use the information to compile reports and to help us improve our site. </p>
+            <p>Cookies contain information that is transferred to your computer’s hard drive. These cookies are used to store information, such as the time that the current visit occurred, whether the visitor has been to the site before and what site referred the visitor to the web page. </p>
+            <p>Google Analytics collects information anonymously. It reports website trends without identifying individual visitors. You can opt out of Google Analytics without affecting how you visit our site – for more information on opting out of being tracked by Google Analytics across all websites you use, visit this <a href="https://tools.google.com/dlpage/gaoptout">Google page</a>.</p>
+            
+            <h3>Cross-site Request Forgery Protection (CSRF):</h4>
+            <p>This type of attack occurs when a malicious Web site contains a link, a form button or some JavaScript that is intended to perform some action on your Web site, using the credentials of a logged-in user who visits the malicious site in their browser. A related type of attack, ‘login CSRF’, where an attacking site tricks a user’s browser into logging into a site with someone else’s credentials, is also covered.</p>
+            <p>This site employs one method of preventing CSRF, which involves including a hidden field in the form as well as in a CSRF token cookie and checking its value when the form is submitted. A simple scheme is to use an MD5 hash of the login cookie, some information about the form, and a secret on the server. Another possibility is to use a randomly generated one-time key for every form you serve, assuming you have a sufficiently unpredictable source of random numbers. This has the disadvantage of making it unsafe for users to save the HTML for forms and upload them to, say, bug databases.</p>
+            
+            <h3>Session Tracking:</h4>
+            <p>This allows the site to keep your session alive in your browser so you do not have to retype in your access code each time you load a new page.</p>
+            
+            <h2><u>Updates</u></h2>
+            <p>Our Privacy Policy may change from time to time and all updates will be posted on this page.</p>
+            <p>If you feel that we are not abiding by this privacy policy, you should <a href="/contact">contact</a> me immediately</p>
+        
+            <h2><u>Links</u></h2>
+            <p>This web site may contain links to other sites. Please be aware that we are not responsible for the content or privacy practices of such other sites. We encourage our users to be aware when they leave our site and to read the privacy statements of any other site that collects personally identifiable information.</p>
+        </div><!--/row-fluid-->        
+    </div><!--/container-->		
+    <!--=== End Content Part ===-->
+{% endblock %}

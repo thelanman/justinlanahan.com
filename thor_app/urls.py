@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^project/(?P<id>[0-9]+)/$', 'main.views.project', name='project'),
     
     # STATIC PAGES
-    url(r'^(terms|robots.txt)$', 'main.views.staticpage', name='staticpage'),    
+    url(r'^(terms|privacy|robots.txt)$', 'main.views.staticpage', name='staticpage'),    
     
     # ADMIN
     url(r'^admin/', include(admin.site.urls)),
