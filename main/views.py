@@ -1,58 +1,29 @@
-import datetime
-
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.utils import timezone
 
-from models import AccessCode, Visitor, Message
-
-
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
-
-def check_code(request):
-    code = request.session.get('access_code', None)
-    if code is None:
-        return False
-    try:
-        ac = AccessCode.objects.get(code=code)
-        if ac.expire_dt < timezone.now():
-            return False
-    except:
-        return False
-    return True
-    
-class require_code(object): 
-    def __init__(self, next='/'):
-        self.next = next
+from models import AccessCode, Visitor, Message, PageVisit, Project, Experience
+from helpers import *        
         
-    def __call__(self, f):
-        def do_check(request, *args, **kwargs):
-            valid = check_code(request)
-            if not valid:
-                return redirect('/access_code?next=%s' % self.next)
-            return f(request, *args, **kwargs)
-        return do_check 
-    
-# === VIEWS ===    
-    
+
 def index(request):
-    return render(request, 'page_about_me2.html', {'valid_code': check_code(request)})
+    projects = Project.objects.all()
+    return render(request, 'page_about_me2.html', {'valid_code': check_code(request), 'projects': projects})
+    
     
 def portfolio(request):
-    return render(request, 'portfolio_3_columns_grid.html', {'valid_code': check_code(request)})
+    projects = Project.objects.all()
+    return render(request, 'portfolio_3_columns_grid.html', {'valid_code': check_code(request), 'projects': projects})
 
+    
 def blog(request):
     return render(request, 'blog_medium_right_sidebar.html', {'valid_code': check_code(request)})
     
+
 def interests(request):
     return render(request, 'interests_3_columns_grid.html', {'valid_code': check_code(request)})
+
     
 def access_code(request):
     if request.method == 'POST':
@@ -66,7 +37,7 @@ def access_code(request):
         code = request.POST['access_code']
         v = None
         try:
-            v = Visitor.objects.get(ip=remote_ip, ua=ua)
+            v = Visitor.objects.get(ip=remote_ip, ua=ua, access_code=ac.id)
         except:
             v = Visitor(ip=remote_ip, ua=ua, access_code=ac)
         v.visits += 1
@@ -74,7 +45,8 @@ def access_code(request):
         request.session['access_code'] = ac.code
         return redirect(request.POST.get('next', '/'))
     return render(request, 'access_code.html', {'valid_code': check_code(request), 'next': request.GET.get('next', '/')})    
-    
+ 
+ 
 def contact(request):
     if request.method == 'POST':
         ip = get_client_ip(request)
@@ -96,22 +68,33 @@ def contact(request):
     return render(request, 'page_contact2.html', {'valid_code': check_code(request)})
     
     
-@require_code('/resume/overview')   
-def experience_overview(request):
-    return render(request, 'private/page_profile_me.html', {'valid_code': check_code(request)})    
+@require_code   
+def resume_overview(request):
+    experiences = Experience.objects.all().order_by('-end')
+    return render(request, 'private/page_profile_me.html', {'valid_code': check_code(request), 'experiences': experiences})    
 
-@require_code('/resume/work')   
-def experience_work(request):
-    return render(request, 'private/shortcode_timeline2-work.html', {'valid_code': check_code(request)})
+@require_code   
+def resume_work(request):
+    work = Experience.objects.all().order_by('-end')
+    return render(request, 'shortcode_timeline2-work.html', {'valid_code': check_code(request), 'work': work})
 
-@require_code('/resume/education')     
-def experience_education(request):
-    return render(request, 'private/shortcode_timeline2-education.html', {'valid_code': check_code(request)})
+@require_code  
+def resume_education(request):
+    education = Experience.objects.all().order_by('-end')
+    return render(request, 'shortcode_timeline2-education.html', {'valid_code': check_code(request), 'education': education})
 
-@require_code('/resume/travel')     
-def experience_travel(request):
+@require_code     
+def travel(request):
     return render(request, 'shortcode_maps_vector.html', {'valid_code': check_code(request)})
-    
+ 
+def project(request, id):
+    p = None
+    try:
+        p = Project.objects.get(id=int(id))
+    except:
+        return HttpRequest('Not Found')
+    return render(request, 'project1.html', {'project': p})
+        
 def staticpage(request, name):
     if name == 'robots.txt':
         return HttpResponse('User-agent: *\nDisallow: /resume', content_type='text/plain')

@@ -50,8 +50,8 @@
                 <p>I always enjoy a challenge and am open to new opportunities. Do not hesitate to reach out to me for collaboration.</p><br>
                 <ul class="list-inline social-icons-v1">
                     <li><a href="https://github.com/thelanman"><i title="GitHub" class="rounded-x fa fa-github"></i></a></li>
-                    <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="rounded-x fa fa-linkedin"></i></a></li>
+                    <li><i class="rounded-x fa fa-facebook"></i></li>
+                    <li><i class="rounded-x fa fa-linkedin"></i></li>
                 </ul>
             </div>
             <!-- End Social Network -->
@@ -61,9 +61,9 @@
                 <div class="headline-left margin-bottom-30">
                     <h2 class="headline-brd heading-md">MY <span class="color-green">SKILLS</span></h2>
                 </div>
-                <h3 class="heading-xs">Python <span class="pull-right">100%</span></h3>
+                <h3 class="heading-xs">Programming <span class="pull-right">99%</span></h3>
                 <div class="progress progress-u progress-xxs">
-                    <div class="progress-bar progress-bar-dark" role="progressbar" data-width="100">
+                    <div class="progress-bar progress-bar-dark" role="progressbar" data-width="99">
                     </div>
                 </div>
 
@@ -73,9 +73,9 @@
                     </div>
                 </div>
 
-                <h3 class="heading-xs">C / C++ <span class="pull-right">60%</span></h3>
+                <h3 class="heading-xs">Data Analytics <span class="pull-right">65%</span></h3>
                 <div class="progress progress-u progress-xxs">
-                    <div class="progress-bar progress-bar-dark" role="progressbar" data-width="60">
+                    <div class="progress-bar progress-bar-dark" role="progressbar" data-width="65">
                     </div>
                 </div>
             </div>
@@ -112,102 +112,24 @@
             </div>
 
             <div id="grid-container" class="cbp-l-grid-gallery">
-                <div class="cbp-item python api">
-                    <a href="/assets/ajax/cube-portfolio/project1.html" class="cbp-caption cbp-singlePageInline"
-                       data-title="Reddit API<br>Saving Saved Posts">
-                        <div class="cbp-caption-defaultWrap">
-                            <img src="/assets/img/portfolio/portfolio-01.png" alt="">
-                        </div>
-                        <div class="cbp-caption-activeWrap">
-                            <div class="cbp-l-caption-alignLeft">
-                                <div class="cbp-l-caption-body">
-                                    <div class="cbp-l-caption-title">Reddit API</div>
-                                    <div class="cbp-l-caption-desc">Saving Saved Posts</div>
+                {% for p in projects %}
+                    <div class="cbp-item {{ p.tags }}">
+                        <a href="/project/{{ p.id }}" class="cbp-caption cbp-singlePageInline"
+                           data-title="{{ p.title }}<br>{{ p.subtitle }}">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="{{ p.img1 }}" alt="">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignLeft">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-title">{{ p.title }}</div>
+                                        <div class="cbp-l-caption-desc">{{ p.subtitle }}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="cbp-item python api">
-                    <a href="/assets/ajax/cube-portfolio/project2.html" class="cbp-caption cbp-singlePageInline"
-                       data-title="Bolt UI<br>by Tiberiu Neamu">
-                        <div class="cbp-caption-defaultWrap">
-                            <img src="/assets/img/portfolio/portfolio-02.png" alt="">
-                        </div>
-                        <div class="cbp-caption-activeWrap">
-                            <div class="cbp-l-caption-alignLeft">
-                                <div class="cbp-l-caption-body">
-                                    <div class="cbp-l-caption-title">Board Game Geek API</div>
-                                    <div class="cbp-l-caption-desc">Game Rank Analytics</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="cbp-item python">
-                    <a href="/assets/ajax/cube-portfolio/project3.html" class="cbp-caption cbp-singlePageInline"
-                       data-title="WhereTO App<br>by Tiberiu Neamu">
-                        <div class="cbp-caption-defaultWrap">
-                            <img src="/assets/img/portfolio/portfolio-03.png" alt="">
-                        </div>
-                        <div class="cbp-caption-activeWrap">
-                            <div class="cbp-l-caption-alignLeft">
-                                <div class="cbp-l-caption-body">
-                                    <div class="cbp-l-caption-title">Market Simulation</div>
-                                    <div class="cbp-l-caption-desc">Data Analytics</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="cbp-item python">
-                    <a href="/assets/ajax/cube-portfolio/project4.html" class="cbp-caption cbp-singlePageInline"
-                       data-title="iDevices<br>by Tiberiu Neamu">
-                        <div class="cbp-caption-defaultWrap">
-                            <img src="/assets/img/portfolio/portfolio-04.png" alt="">
-                        </div>
-                        <div class="cbp-caption-activeWrap">
-                            <div class="cbp-l-caption-alignLeft">
-                                <div class="cbp-l-caption-body">
-                                    <div class="cbp-l-caption-title">Discrete Event Simulation</div>
-                                    <div class="cbp-l-caption-desc">System Modelling</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="cbp-item web-design python">
-                    <a href="/assets/ajax/cube-portfolio/project5.html" class="cbp-caption cbp-singlePageInline"
-                       data-title="Seemple* Music for iPad<br>by Tiberiu Neamu">
-                        <div class="cbp-caption-defaultWrap">
-                            <img src="/assets/img/portfolio/portfolio-05.png" alt="">
-                        </div>
-                        <div class="cbp-caption-activeWrap">
-                            <div class="cbp-l-caption-alignLeft">
-                                <div class="cbp-l-caption-body">
-                                    <div class="cbp-l-caption-title">Quantified Self</div>
-                                    <div class="cbp-l-caption-desc">Life Logging All the Things</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="cbp-item python">
-                    <a href="/assets/ajax/cube-portfolio/project6.html" class="cbp-caption cbp-singlePageInline"
-                       data-title="Remind~Me Widget<br>by Tiberiu Neamu">
-                        <div class="cbp-caption-defaultWrap">
-                            <img src="/assets/img/portfolio/portfolio-06.png" alt="">
-                        </div>
-                        <div class="cbp-caption-activeWrap">
-                            <div class="cbp-l-caption-alignLeft">
-                                <div class="cbp-l-caption-body">
-                                    <div class="cbp-l-caption-title">Machine Learning</div>
-                                    <div class="cbp-l-caption-desc">Optimize, optimize!</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>                
+                {% endfor %}
             </div><!--/end Grid Container-->
         </div>
         <!-- End Cube Portfolio -->

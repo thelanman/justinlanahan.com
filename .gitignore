@@ -3,6 +3,7 @@ private.py
 assets/
 log/
 main/templates/private
+main/migrations
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

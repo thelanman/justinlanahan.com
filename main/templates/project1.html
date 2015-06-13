@@ -1,0 +1,14 @@
+<div class="cbp-l-inline">
+    <div class="cbp-l-inline-left">
+        <img src="{{project.img1}}" alt="Dashboard" class="cbp-l-project-img">
+    </div>
+
+    <div class="cbp-l-inline-right">
+        <div class="cbp-l-inline-title">{{project.title}}</div>
+        <div class="cbp-l-inline-subtitle">{{ project.subtitle }}</div>
+        {% autoescape off %}
+        <div class="cbp-l-inline-desc">{{ project.body }}</div>
+        {% endautoescape %}
+        <!--<a href="#" target="_blank" class="cbp-l-inline-view">VIEW PROJECT</a>-->
+    </div>
+</div>

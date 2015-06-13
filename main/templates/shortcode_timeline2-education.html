@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}Education{% endblock %}
+{% block experience_active %} active {% endblock %}
+    {% block extra-head %}
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/assets/plugins/animate.css">
+    <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="/assets/css/pages/shortcode_timeline2.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    {% endblock %}
+
+    {% block body %}
+    <!--=== Breadcrumbs ===-->
+    <div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left">Educational Experience</h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="/resume/overview">Resume</a></li>
+                <li class="active">Education</li>
+            </ul>
+        </div>
+    </div><!--/breadcrumbs-->
+    <!--=== End Breadcrumbs ===-->
+
+    <!--=== Content Part ===-->
+    <div class="container content">
+        <div class="row">
+            <!-- Begin Content -->
+            <div class="col-md-11">
+                <ul class="timeline-v2">
+                    {% autoescape off %}
+                    {% for e in education %}
+                        {% if "education" in e.access %}
+                        <li class="equal-height-columns">
+                            <div class="cbp_tmtime equal-height-column"><span>{{ e.end|date:"SHORT_DATE_FORMAT" }}</span> <span>{{ e.end|date:"F" }}</span></div>
+                            <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                            <div class="cbp_tmlabel equal-height-column">
+                                <h2 style="padding:0px; margin:0px; border-bottom:0px">{{ e.title }}<small> - {{ e.subtitle }}</small></h2>
+                                <h5 style="border-bottom:1px solid #ddd; margin:0px; padding:0px">{{ e.location }} - {{ e.position }}</h5>
+                                <div class="margin-bottom-20"></div>        
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img class="img-responsive" src=" {{ e.img1 }}" alt="">
+                                        <div class="md-margin-bottom-20"></div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{ e.body }}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% endautoescape %}
+                </ul>
+            </div>
+            <!-- End Content -->
+        </div>
+    </div><!--/container-->
+    <!--=== End Content Part ===-->
+{% endblock %}
+
+{% block extra-js %}
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
+<script type="text/javascript" src="/assets/plugins/circles-master/circles.js"></script>
+<!-- JS Customization -->
+<script type="text/javascript" src="/assets/js/custom.js"></script>
+<!-- JS Page Level -->
+<script type="text/javascript" src="/assets/js/app.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/circles-master.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+        CirclesMaster.initCirclesMaster1();
+    });
+</script>
+{% endblock %}

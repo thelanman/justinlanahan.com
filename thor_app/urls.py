@@ -26,11 +26,12 @@ urlpatterns = [
     url(r'^blog/$', 'main.views.blog', name='blog'),
     url(r'^interests/$', 'main.views.interests', name='interests'),
     url(r'^access_code/$', 'main.views.access_code', name='access_code'),
-    url(r'^resume/overview/$', 'main.views.experience_overview', name='experience_overview'),
-    url(r'^resume/work/$', 'main.views.experience_work', name='experience_work'),
-    url(r'^resume/education/$', 'main.views.experience_education', name='experience_education'),
-    url(r'^resume/travel/$', 'main.views.experience_travel', name='experience_travel'),
+    url(r'^resume/overview/$', 'main.views.resume_overview', name='resume_overview'),
+    url(r'^resume/work/$', 'main.views.resume_work', name='resume_work'),
+    url(r'^resume/education/$', 'main.views.resume_education', name='resume_education'),
+    url(r'^travel/$', 'main.views.travel', name='travel'),
     url(r'^contact/$', 'main.views.contact', name='contact'),
+    url(r'^project/(?P<id>[0-9]+)/$', 'main.views.project', name='project'),
     
     # STATIC PAGES
     url(r'^(terms|robots.txt)$', 'main.views.staticpage', name='staticpage'),    
