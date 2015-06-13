@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.utils import timezone
 
-from models import AccessCode, Visitor, PageVisit
+from models import AccessCode, Visitor, PageVisit, VisitorHasAccessCode
 
 
 def get_client_ip(request):
@@ -13,15 +13,19 @@ def get_client_ip(request):
     return ip
 
     
-def do_track(request, code):
+def do_track(request, ac):
+    if not ac.track:
+        return
     ip = get_client_ip(request)
     ua = request.META['HTTP_USER_AGENT']
-    v = None
-    try:
-        v = Visitor.objects.get(ip=ip, ua=ua, access_code=code.id)
-    except Exception, e:
-        return
-    pv = PageVisit(visitor=v, page_url=request.path, anchor=request.GET.get('anc', ''))
+    v = Visitor.objects.get_or_create(ip=ip, ua=ua)
+    if v[1]:
+        v[0].visits += 1
+        v[0].save()
+        v_has_ac = VisitorHasAccessCode.objects.get_or_create(visitor=v[0], access_code=ac)[0]
+        v_has_ac.visits += 1
+        v_has_ac.save()
+    pv = PageVisit(visitor=v[0], access_code=ac, page_url=request.path, anchor=request.GET.get('anc', ''))
     pv.save()
     
 

@@ -58,6 +58,7 @@ class AccessCode(models.Model):
     created_dt = models.DateTimeField(auto_now_add=True)
     expire_dt = models.DateTimeField()
     note = models.TextField(blank=True, default='')
+    track = models.BooleanField(default=True)
     
     def __unicode__(self):
         return u'AccessCode(%s - %s)' % (self.code, self.expire_dt.strftime('%Y-%m-%d %H:%M'))
@@ -69,21 +70,31 @@ class AccessCode(models.Model):
 class Visitor(models.Model):
     ip = models.CharField(max_length=15)
     ua = models.TextField()
-    access_code = models.ForeignKey(AccessCode)
     datetime = models.DateTimeField(auto_now_add=True)
     visits = models.IntegerField(default=0)
     note = models.TextField(blank=True, default='')
     
     def __unicode__(self):
-        return u'Visitor(%s Code: %s #:%s)' % (self.ip, self.access_code.code, self.visits)
+        return u'Visitor(%s #:%s)' % (self.ip, self.visits)
  
     def __repr__(self):
-        return 'Visitor(%s Code: %s #:%s)' % (self.ip, self.access_code.code, self.visits)
+        return 'Visitor(%s #:%s)' % (self.ip, self.visits)
 
-        
+class VisitorHasAccessCode(models.Model):
+    visitor = models.ForeignKey(Visitor)
+    access_code = models.ForeignKey(AccessCode)
+    visits = models.IntegerField(default=0)
+    
+    def __unicode__(self):
+        return u'Has(%s -> %s)' % (self.visitor, self.access_code)
+ 
+    def __repr__(self):
+        return 'Has(%s -> %s)' % (self.visitor, self.access_code)
+    
 class PageVisit(models.Model):
     visitor = models.ForeignKey(Visitor)
     page_url = models.TextField()
+    access_code = models.ForeignKey(AccessCode)
     anchor = models.TextField(blank=True, default='')
     datetime = models.DateTimeField(auto_now_add=True)
     

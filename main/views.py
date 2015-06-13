@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.utils import timezone
 
-from models import AccessCode, Visitor, Message, PageVisit, Project, Experience
+from models import AccessCode, Visitor, Message, Project, Experience, VisitorHasAccessCode
 from helpers import *        
         
 
@@ -35,13 +35,12 @@ def access_code(request):
         remote_ip = get_client_ip(request)
         ua = request.META['HTTP_USER_AGENT']
         code = request.POST['access_code']
-        v = None
-        try:
-            v = Visitor.objects.get(ip=remote_ip, ua=ua, access_code=ac.id)
-        except:
-            v = Visitor(ip=remote_ip, ua=ua, access_code=ac)
+        v = Visitor.objects.get_or_create(ip=remote_ip, ua=ua)[0]
         v.visits += 1
         v.save()
+        v_has_ac = VisitorHasAccessCode.objects.get_or_create(visitor=v, access_code=ac)[0]
+        v_has_ac.visits += 1
+        v_has_ac.save()
         request.session['access_code'] = ac.code
         return redirect(request.POST.get('next', '/'))
     return render(request, 'access_code.html', {'valid_code': check_code(request), 'next': request.GET.get('next', '/')})    

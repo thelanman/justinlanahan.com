@@ -58,7 +58,7 @@
                 <ul class="loginbar pull-right">
                     <!--<li><a href="page_faq.html">Help</a></li>
                     <li class="topbar-devider"></li>-->
-                    <li>{% if not valid_code %} <a href="/access_code">Access</a> {% else %} Welcome!{% endif %}</li>
+                    <li>{% if not valid_code %} <a href="/access_code">Request Access</a> {% else %} Welcome!{% endif %}</li>
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -76,7 +76,7 @@
             <div class="container">
                 <ul class="nav navbar-nav"> 
 
-                    <!-- Experience -->
+                    <!-- Resume -->
                     <li class="{% if valid_code %}dropdown {% endif %}{% block experience_active %}{% endblock %}">
                     {% if not valid_code %}
                         <a href="/resume/overview" class="">Resume <i class="fa fa-lock"></i></a>                        
@@ -89,13 +89,10 @@
                             <li><a href="/resume/overview">Overview </a></li>
                             <li><a href="/resume/work">Work</a></li>
                             <li><a href="/resume/education">Education</a></li>
-                            <!--<li><a href="/experience/travel">Travel</a></li>-->
                         </ul>
                     {% endif %}
                     </li>
-                    
-                    
-                    <!-- End Experience -->
+                    <!-- End Resume -->
 
                     <!-- Portfolio -->
                     <li class="{% block portfolio_active %}{% endblock %}">
