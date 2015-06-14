@@ -5,7 +5,19 @@ from django.utils import timezone
 
 from models import AccessCode, Visitor, Message, Project, Experience, VisitorHasAccessCode
 from helpers import *        
-        
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
+def ip(request):
+    return HttpResponse(get_client_ip(request))        
 
 def index(request):
     projects = Project.objects.all()
@@ -65,7 +77,6 @@ def contact(request):
             print 'ERROR', str(e)
             return render(request, 'page_contact2.html', {'valid_code': check_code(request), 'error': 'invalid form'})
         return render(request, 'page_contact2.html', {'valid_code': check_code(request), 'success': 'Thanks for the message'})
-    print 'MESSAGE get'
     return render(request, 'page_contact2.html', {'valid_code': check_code(request)})
     
     
@@ -93,7 +104,7 @@ def project(request, id):
     try:
         p = Project.objects.get(id=int(id))
     except:
-        return HttpRequest('Not Found')
+        return handler404(request)
     return render(request, 'project1.html', {'project': p})
         
 def staticpage(request, name):
@@ -110,3 +121,4 @@ def handler500(request):
     response = render_to_response('500.html', {'valid_code': check_code(request)}, context_instance=RequestContext(request))
     response.status_code = 500
     return response
+

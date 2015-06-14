@@ -32,10 +32,12 @@ urlpatterns = [
     url(r'^travel/$', 'main.views.travel', name='travel'),
     url(r'^contact/$', 'main.views.contact', name='contact'),
     url(r'^project/(?P<id>[0-9]+)/$', 'main.views.project', name='project'),
-    
+        
     # STATIC PAGES
     url(r'^(terms|privacy|robots.txt)$', 'main.views.staticpage', name='staticpage'),    
     
     # ADMIN
     url(r'^admin/', include(admin.site.urls)),
-    ]
+    
+    url(r'^ip/$', 'main.views.ip', name='ip'),
+  ]
