@@ -23,7 +23,7 @@
             <br>
             {% if not valid_code %}
                 <form action='/access_code/'  method='POST'>
-                    <div class="input-group col-lg-3 col-md-3 col-sm-5 col-xs-6">
+                    <div class="input-group col-lg-3 col-md-3 col-sm-3 col-xs-7">
                         <input type="text" class="form-control" name="access_code" placeholder="Input Access Code ...">
                          {% csrf_token %}
                         <span class="input-group-btn">

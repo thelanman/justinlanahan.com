@@ -42,6 +42,8 @@ def access_code(request):
         v_has_ac.visits += 1
         v_has_ac.save()
         request.session['access_code'] = ac.code
+        next = request.POST.get('next', '/')
+        next = '/' if next == '' else next
         return redirect(request.POST.get('next', '/'))
     return render(request, 'access_code.html', {'valid_code': check_code(request), 'next': request.GET.get('next', '/')})    
  
