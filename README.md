@@ -1,20 +1,21 @@
-# [justinlanahan.com](http://www.justinlanahan.com)
-
-Home of my personal website / resume hosted on digitalocean.com running on Ubuntu LTS 12.04.
+Home of my personal website and resume hosted on digitalocean.com running on Ubuntu LTS 12.04. Visit it at [justinlanahan.com](http://www.justinlanahan.com)
 
 ## Dependencies
 ##### Applications
 - nginx
 - gunicorn
+- supervisor
 - python2.7+
 - postgresql
 - postgresql-contrib
 - libpq
 - libpq-dev
 - python-dev
+
 ##### Python Packages
 - django
 - psycopg2
+
 ## Setup
 ##### 0. Start fresh
 ```sh
@@ -115,6 +116,53 @@ In order for the `--name` argument to have an effect you need to install a Pytho
 (appname)username@ubuntu:~$ pip install setproctitle
 ```
 
+##### 8. Starting and Monitoring with Supervisor
+We need to make sure the bin/gunicorn_start script starts automatically with the system and can be restarted if it exits unexpectedly for some reason. Enter `supervisord`.
+```sh
+$ sudo aptitude install supervisor
+```
+Once installed, you can give supervisor programs to start and watch by creating conf files in the `/etc/supervisor/conf.d` directory. Copy `configs/supervisor-thor_app.conf` to `/etc/supervisor/conf.d/appname.conf`.
+
+Now create the file to store your application's log messages:
+```sh
+username@ubuntu:~$ mkdir -p /webapps/appname/logs/
+username@ubuntu:~$ touch /webapps/appname/logs/gunicorn_supervisor.log
+```
+Finally, restart, update and check status of supervisor with the new configs.
+```sh
+$ sudo supervisorctl reread
+$ sudo supervisorctl update
+$ sudo supervisorctl status appname
+``` 
+
+##### 9. Nginx
+Nginx will act as a reverse proxy for us and serve our application and its statis files.
+```sh
+$ sudo aptitude install nginx
+$ sudo service nginx start
+```
+You can now navigate to http://example.com and you should see "Welcome to nginx!".
+
+Each Nginx virtual server (webapp) should have its own config file in the `/etc/nginx/sites-available` directory. You then select which sites you want to enable by making symbolic links to thos in the `/etc/nginx/sites-enabled` directory. Copy `configs/nginx-thor_app` to `/etc/nginx/sites-available/appname` then create symbolic link with `$ sudo ln -s /etc/nginc/sites-enabled/appname` then restart Nginx `$ sudo service nginx restart`.
+
+#### Mission Accomplished!
+
+## Running Multiple Web Applications
+1. Create seperate virtual environment in `/webapps/` with Django, Gunicorn and any other dependencies.
+2. Create seperate system accounts, so one doesn't pwn them all.
+3. Create bin/gunicorn_start script
+4. Create supervisor config files and start the app
+5. Create Nginx virtual servers
+
+## Uninstalling
+If you ever need to nuke your web application, follow these steps.
+
+1. `$ sudo rm /etc/nginx/sites-enabled/appname`. Disables virtual server from Nginx.
+2. `$ sudo service nginx restart`. Completes the disabling.
+3. `$ sudo rm /etc/nginx/sites-available/appname`. Remove base webapp config file from Nginx if you never intend to use it again.
+4. `$ sudo supervisorctl stop appname`. Stops Supervisor from monitoring app.
+5. `$ sudo rm /etc/supervisor/conf.d/appname.conf`. Removes app from Supervisor's control scripts directory.
+6. `$ sudo rm -r /webapps/appname`. Final nuke of all the django files.
 
 ## Thanks
 [Michal Karzynski's Blog](http://michal.karzynski.pl/blog/2013/06/09/django-nginx-gunicorn-virtualenv-supervisor/) - Production Django setup
