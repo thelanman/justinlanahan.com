@@ -4,6 +4,7 @@ assets/
 log/
 main/templates/private
 main/migrations
+life_log/migrations
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

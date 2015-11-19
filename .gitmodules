@@ -1,0 +1,6 @@
+[submodule "life-log/lifelogger"]
+	path = life-log/lifelogger
+	url = https://github.com/thelanman/life-logger.git
+[submodule "life_log/lifelogger"]
+	path = life_log/lifelogger
+	url = https://github.com/thelanman/life-logger.git
