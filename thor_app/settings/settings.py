@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'main',
     'life_log',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,6 +102,10 @@ LOGGING = {
             'level':'DEBUG',
         },
         'thor_app': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+        'life_log': {
             'handlers': ['file'],
             'level': 'DEBUG',
         },
