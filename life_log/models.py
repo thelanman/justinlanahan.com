@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 
 class Query(models.Model):
     user = models.ForeignKey(User)
+    name = models.TextField(blank=False, null=False)
     raw = models.TextField()
     key = models.TextField(default='', blank=True)
     f_raw = models.TextField(blank=True, default='len')
@@ -62,23 +63,29 @@ class Query(models.Model):
         self.check_events()
 
     def save(self, *args, **kwargs):
+        created = self.pk is None
+        self.full_clean()
         if self.pk is not None and (self.raw_init != self.raw or self.key_init != self.key or self.f_raw != self.f_raw_init or self.groupby_init != self.groupby):
             self.update_events()
         if self.pk is None:
-            super(Query, self).save(*args, **kwargs)
-            self.check_events()
+            self.raw_init = self.raw
+            self.key_init = self.key
+            self.f_raw_init = self.f_raw
+            self.groupby_init = self.groupby
         super(Query, self).save(*args, **kwargs)
-        
+        if created:
+            self.check_events()
+
     def __unicode__(self):
-        return 'Query(%s %s: %s)' % (self.user, self.raw, self.f_raw)
+        return 'Query(%s:%s "%s" %s(%s) = %s)' % (self.user, self.name, self.raw, self.f_raw, self.key, self.value)
 
     def __repr__(self):
-        return 'Query(%s %s: %s)' % (self.user, self.raw, self.f_raw)
+        return 'Query(%s:%s "%s" %s(%s) = %s)' % (self.user, self.name, self.raw, self.f_raw, self.key, self.value)
 
         
 class Event(models.Model):
     user = models.ForeignKey(User)
-    queries = models.ManyToManyField(Query, null=True, blank=True)
+    queries = models.ManyToManyField(Query, blank=True)
     raw = models.TextField()
     data_pickled = models.TextField(blank=True, null=True)
     submitted_dt = models.DateTimeField(auto_now_add=True)
@@ -110,18 +117,23 @@ class Event(models.Model):
     def from_db(cls, db, field_names, values):
         instance = super(Event, cls).from_db(db, field_names, values)
         instance._loaded_values = dict(zip(field_names, values))
-        instance.data = pickle.loads(instance._loaded_values['data_pickled'])
+        data_pickled = instance._loaded_values.get('data_pickled', None)
+        instance.data = pickle.loads(data_pickled) if data_pickled is not None else {}
         instance.raw_init = instance._loaded_values['raw']
         instance.event_dt_init = instance._loaded_values['event_dt'] 
         return instance
 
     def save(self, *args, **kwargs):
+        created = self.pk is None
+        self.full_clean()
         if self.pk is not None and (self.raw_init != self.raw or self.event_dt_init != self.event_dt):
             self.update_queries()
         if self.pk is None:
-            super(Event, self).save(*args, **kwargs)
-            self.check_queries()
+            self.raw_init = self.raw
+            self.event_dt_init = self.event_dt
         super(Event, self).save(*args, **kwargs)
+        if created:
+            self.check_queries()
 
     def __unicode__(self):
         return 'Event(%s: %s: %s)' % (self.user, self.event_dt, self.raw)

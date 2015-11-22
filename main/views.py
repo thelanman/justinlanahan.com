@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 from models import AccessCode, Visitor, Message, Project, Experience, VisitorHasAccessCode
 from helpers import *        

@@ -16,8 +16,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+import life_log.views
+import main.views
+
 handler404 = 'main.views.handler404'
 handler500 = 'main.views.handler500'
+
 
 urlpatterns = [
     # HOME
@@ -32,7 +36,12 @@ urlpatterns = [
     url(r'^travel/$', 'main.views.travel', name='travel'),
     url(r'^contact/$', 'main.views.contact', name='contact'),
     url(r'^project/(?P<id>[0-9]+)/$', 'main.views.project', name='project'),
-        
+
+    # API
+    url(r'^api/events/$', life_log.views.EventView.as_view()),
+    url(r'^api/queries/$', life_log.views.QueryView.as_view()),
+
+    
     # STATIC PAGES
     url(r'^(terms|privacy|robots.txt)$', 'main.views.staticpage', name='staticpage'),    
     

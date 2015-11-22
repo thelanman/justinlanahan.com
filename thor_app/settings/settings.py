@@ -29,6 +29,8 @@ DEBUG = private.DEBUG
 ALLOWED_HOSTS = private.ALLOWED_HOSTS
 
 
+LOGIN_URL = '/admin/login/'
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -111,6 +113,7 @@ LOGGING = {
         },
     }
 }
+
 
 
 WSGI_APPLICATION = 'thor_app.wsgi.application'
