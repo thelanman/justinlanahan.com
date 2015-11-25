@@ -37,6 +37,10 @@ urlpatterns = [
     url(r'^contact/$', 'main.views.contact', name='contact'),
     url(r'^project/(?P<id>[0-9]+)/$', 'main.views.project', name='project'),
 
+    # LIFE LOG
+    url(r'^events/$', 'life_log.views.events', name='events'),
+    url(r'^queries/$', 'life_log.views.queries', name='queries'),
+
     # API
     url(r'^api/events/$', life_log.views.EventView.as_view()),
     url(r'^api/queries/$', life_log.views.QueryView.as_view()),

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block title %} Events {% endblock %}
+{% block extra-head %}
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+
+{% endblock %}
+{% block body %}
+<div class='breadcrumbs'>
+    <div class='container'>
+        <h1 class='pull-left'>Life Logger</h1>
+        <ul class='pull-right breadcrumb'>
+            <li><a href='/'>Home</a></li>
+            <li class='active'><a href='/events/'>Entries</a></li>
+        </ul>
+    </div>
+</div>
+<br>
+<div class='container'>    
+    <div class='col-lg-4'></div>
+    <div class='events_div col-lg-4'>
+        <form class="event_form navbar-form navbar-center">
+            <div class='form-group'>
+                <input autofocus class="event_input form-control" placeholder='Input new entry' type='text' name='raw'>
+            </div>
+            <button class='btn btn-default event_button' type='submit'>Submit!</button>
+        </form>
+    </div>
+    <div class='status col-lg-3'>
+    </div>
+</div>
+<br><br>
+<div class='container'>
+    <div class='events_div col-lg-10 col-lg-offset-2'>
+        <table id="events_table" class="display" cellspacing="0" width="100%">
+            <thead><tr><th>Date Time</th><th>Event</th><th>action</th></tr></thead>
+            <tfoot><tr><th>Date Time</th><th>Event</th><th>action</th></tr></tfoot>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extra-js %}
+<script type="text/javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script>
+
+$(document).ready(function(){
+
+function status(s, clear, success){
+    clear = typeof clear !== 'undefined' ? clear : false
+    s = typeof s !== 'undefined' ? s : ''
+    success = success ? 'success' : 'danger'
+    if(clear){
+        $('.status').html('');
+    }else{
+        $('.status').html('<div class="alert alert-'+success+'"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span>' + s + '<span class="glyphicon glyphicon-remove pull-right status_close"></span></div></div>');
+    }
+}
+
+$('.status').click(function(e){
+    status('', true);
+});
+
+events_url = '/api/events/{% if query_id %}?query_id={{query_id}}{% endif %}'
+
+
+var t = $('#events_table').DataTable({
+    'ajax': events_url,
+    'order': [[0, 'desc']],
+    'rowId': 'id',
+    'columnDefs': [{'targets': 0, 'width': '20%'},{'targets': -1, 'width': '10%', 'data':null, 
+    'defaultContent': '<i class="glyphicon glyphicon-pencil"></i><i class="text-danger glyphicon glyphicon-remove event_delete"></i>'}],
+    //'defaultContent': '<button>Click</button>'}],
+    'columns': [{'data': 'event_dt'}, {'data': 'raw'}, null]
+});
+
+
+post = function(url, data, success){
+    data['csrfmiddlewaretoken'] = '{{ csrf_token }}'; 
+    $.ajax({type: "POST",
+            url: url,
+            data: data,
+            success: function(result){
+                $('.status').html(result);
+                success(result);
+                status('success', false, true);
+            },
+            error: function(result){
+                status(result['responseJSON']['message'], false, false);    
+            }
+          });
+}
+
+$('.event_form').submit(function(e){
+    e.preventDefault();
+    post(events_url, {'raw': $('.event_input').val()}, function(result){{% if query_id %} t.ajax.reload() {% else %}t.row.add(result['data'][0]).draw(false){% endif %} });
+});
+
+$('#events_table tbody').on('click', 'i.event_delete', function(){
+    var data = t.row($(this).parents('tr')).data();
+    var id = $(this).parents('tr').attr('id');
+    var f = function(thing){
+            return function(result){t.row($(thing).parents('tr')).remove().draw(false)};
+        }
+    f = f(this);
+    post('/api/events/', {'id': id, 'action': 'delete'}, f);
+});
+
+});
+</script>
+{% endblock %}

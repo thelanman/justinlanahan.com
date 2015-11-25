@@ -65,16 +65,24 @@ class Query(models.Model):
     def save(self, *args, **kwargs):
         created = self.pk is None
         self.full_clean()
-        if self.pk is not None and (self.raw_init != self.raw or self.key_init != self.key or self.f_raw != self.f_raw_init or self.groupby_init != self.groupby):
+        if not created and (self.raw_init != self.raw or self.key_init != self.key or self.f_raw != self.f_raw_init or self.groupby_init != self.groupby):
+            logger.debug('NOT CREATED %s %s %s' % (self.raw_init != self.raw, self.key_init != self.key, self.f_raw != self.f_raw_init))
             self.update_events()
-        if self.pk is None:
+            logger.debug('UPDATE EVENTS %s %s' % (self.count, self.value))
+            super(Query, self).save(*args, **kwargs)
+            logger.debug('UPDATE EVENTS %s %s' % (self.count, self.value))
+        elif created:
             self.raw_init = self.raw
             self.key_init = self.key
             self.f_raw_init = self.f_raw
             self.groupby_init = self.groupby
-        super(Query, self).save(*args, **kwargs)
-        if created:
+            super(Query, self).save(*args, **kwargs)
+            logger.debug('CR UPDATE EVENTS %s %s' % (self.count, self.value))
             self.check_events()
+            logger.debug('Cr UPDATE EVENTS %s %s' % (self.count, self.value))
+            super(Query, self).save(*args, **kwargs)
+            logger.debug('Cr UPDATE EVENTS %s %s' % (self.count, self.value))
+        
 
     def __unicode__(self):
         return 'Query(%s:%s "%s" %s(%s) = %s)' % (self.user, self.name, self.raw, self.f_raw, self.key, self.value)
@@ -94,11 +102,14 @@ class Event(models.Model):
 
     def clean(self):
         try:
-            self.data = lifelogger.parser.parse_event(self.raw, tz='America/New_York')
+            dt = timezone.now() if '@' not in self.raw and self.event_dt is None else None
+            self.data = lifelogger.parser.parse_event(self.raw, start_tz='America/New_York', end_tz='America/New_York', dt=dt)
         except Exception, e:
             raise ValidationError(str(e))
-        self.event_dt = self.data.get('datetime', None)
+        self.event_dt = self.data.get('datetime', self.event_dt if self.event_dt is not None else lifelogger.parser.convert_tz(timezone.now(), 'UTC', 'America/New_York'))
+        self.raw = lifelogger.utils.data_to_raw(self.data)
         self.data_pickled = pickle.dumps(self.data)
+
 
     def check_queries(self):
         queries = Query.objects.filter(user=self.user)
@@ -120,6 +131,12 @@ class Event(models.Model):
         data_pickled = instance._loaded_values.get('data_pickled', None)
         instance.data = pickle.loads(data_pickled) if data_pickled is not None else {}
         instance.raw_init = instance._loaded_values['raw']
+        instance.event_dt = lifelogger.parser.convert_tz(instance._loaded_values['event_dt'], start_tz='UTC', end_tz='America/New_York')
+        instance.data['year'] = instance.event_dt.year
+        instance.data['month'] = instance.event_dt.month
+        instance.data['day'] = instance.event_dt.day
+        instance.data['weekday'] = instance.event_dt.weekday()
+        instance._loaded_values['event_dt'] = instance.event_dt
         instance.event_dt_init = instance._loaded_values['event_dt'] 
         return instance
 

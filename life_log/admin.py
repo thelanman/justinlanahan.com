@@ -12,7 +12,7 @@ class EventAdmin(admin.ModelAdmin):
         obj.check_queries()
 
 class QueryAdmin(admin.ModelAdmin):
-    list_display = ('user', 'raw', 'f_raw', 'groupby', 'key', 'count', 'value')
+    list_display = ('user', 'name', 'raw', 'f_raw', 'groupby', 'key', 'count', 'value')
 
 admin.site.register(Event, EventAdmin)
 admin.site.register(Query, QueryAdmin)
