@@ -1,4 +1,4 @@
-Home of my personal website and resume hosted on digitalocean.com running on Ubuntu LTS 12.04. Visit it at [justinlanahan.com](http://www.justinlanahan.com)
+Home of my personal website and resume hosted on digitalocean.com running on Ubuntu LTS 12.04. Visit it at [https://www.justinlanahan.com](https://www.justinlanahan.com)
 
 ## Dependencies
 ##### Applications
@@ -163,6 +163,10 @@ If you ever need to nuke your web application, follow these steps.
 4. `$ sudo supervisorctl stop appname`. Stops Supervisor from monitoring app.
 5. `$ sudo rm /etc/supervisor/conf.d/appname.conf`. Removes app from Supervisor's control scripts directory.
 6. `$ sudo rm -r /webapps/appname`. Final nuke of all the django files.
+
+## TODO
+- Redirect to login when POSTing on events page
+- Error when submitting groupby query from admin but not from shell
 
 ## Thanks
 [Michal Karzynski's Blog](http://michal.karzynski.pl/blog/2013/06/09/django-nginx-gunicorn-virtualenv-supervisor/) - Production Django setup
