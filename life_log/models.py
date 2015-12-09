@@ -59,29 +59,25 @@ class Query(models.Model):
         self.calculate(event_data)
 
     def update_events(self):
-        self.event_set.clear()
+        es = self.event_set.all()
+        for e in es:
+            self.event_set.remove(e.id)
         self.check_events()
 
     def save(self, *args, **kwargs):
         created = self.pk is None
         self.full_clean()
         if not created and (self.raw_init != self.raw or self.key_init != self.key or self.f_raw != self.f_raw_init or self.groupby_init != self.groupby):
-            logger.debug('NOT CREATED %s %s %s' % (self.raw_init != self.raw, self.key_init != self.key, self.f_raw != self.f_raw_init))
             self.update_events()
-            logger.debug('UPDATE EVENTS %s %s' % (self.count, self.value))
             super(Query, self).save(*args, **kwargs)
-            logger.debug('UPDATE EVENTS %s %s' % (self.count, self.value))
         elif created:
             self.raw_init = self.raw
             self.key_init = self.key
             self.f_raw_init = self.f_raw
             self.groupby_init = self.groupby
             super(Query, self).save(*args, **kwargs)
-            logger.debug('CR UPDATE EVENTS %s %s' % (self.count, self.value))
             self.check_events()
-            logger.debug('Cr UPDATE EVENTS %s %s' % (self.count, self.value))
             super(Query, self).save(*args, **kwargs)
-            logger.debug('Cr UPDATE EVENTS %s %s' % (self.count, self.value))
         
 
     def __unicode__(self):
@@ -102,7 +98,7 @@ class Event(models.Model):
 
     def clean(self):
         try:
-            dt = timezone.now() if '@' not in self.raw and self.event_dt is None else None
+            dt = None if '@' in self.raw else self.event_dt if self.event_dt is not None else timezone.now()
             self.data = lifelogger.parser.parse_event(self.raw, start_tz='America/New_York', end_tz='America/New_York', dt=dt)
         except Exception, e:
             raise ValidationError(str(e))
@@ -121,7 +117,9 @@ class Event(models.Model):
                 q.save()
 
     def update_queries(self):
-        self.queries.clear()
+        qs = self.queries.all()
+        for q in qs:
+            self.queries.remove(q.id)
         self.check_queries()
 
     @classmethod
