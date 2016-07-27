@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
+{% load static from staticfiles %}
 {% block title %}Access Code{% endblock %}
 {% block extra-head %}
 <!-- CSS Implementing Plugins -->
-<link rel="stylesheet" href="/assets/plugins/animate.css">
-<link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
-<link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static "unify-v191/assets/plugins/animate.css"%}">
+<link rel="stylesheet" href="{% static "unify-v191/assets/plugins/line-icons/line-icons.css"%}">
+<link rel="stylesheet" href="{% static "unify-v191/assets/plugins/font-awesome/css/font-awesome.min.css"%}">
 
 <!-- CSS Customization -->
-<link rel="stylesheet" href="/assets/css/custom.css">
+<link rel="stylesheet" href="{% static "unify-v191/assets/css/custom.css"%}">
 {% endblock %}
 {% block body %}
 <!--=== Breadcrumbs ===-->

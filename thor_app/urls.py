@@ -27,9 +27,9 @@ urlpatterns = [
     # HOME
     url(r'^$', 'main.views.index', name='index'),
     url(r'^portfolio/$', 'main.views.portfolio', name='portfolio'),
-    url(r'^blog/$', 'main.views.blog', name='blog'),
+    #url(r'^blog/$', 'main.views.blog', name='blog'),
     url(r'^interests/$', 'main.views.interests', name='interests'),
-    url(r'^access_code/$', 'main.views.access_code', name='access_code'),
+    url(r'^access_code', 'main.views.access_code', name='access_code'),
     url(r'^resume/overview/$', 'main.views.resume_overview', name='resume_overview'),
     url(r'^resume/work/$', 'main.views.resume_work', name='resume_work'),
     url(r'^resume/education/$', 'main.views.resume_education', name='resume_education'),

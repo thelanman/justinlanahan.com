@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
+{% load static from staticfiles %}
 {% block title %} Blog {% endblock %}
 {% block extra-head %}
     <!-- CSS Header and Footer -->
-    <link rel="stylesheet" href="/assets/css/headers/header-default.css">
-    <link rel="stylesheet" href="/assets/css/footers/footer-v1.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/css/headers/header-default.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/css/footers/footer-v1.css"%}">
 
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="/assets/plugins/animate.css">
-    <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/animate.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/line-icons/line-icons.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/font-awesome/css/font-awesome.min.css"%}">
 
     <!-- CSS Page Style -->
-    <link rel="stylesheet" href="/assets/css/pages/blog.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/css/pages/blog.css"%}">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/css/custom.css"%}">
     
     {% endblock %}
     {% block blog_active %}active{% endblock %}
@@ -40,7 +41,7 @@
                 <!--Blog Post-->
                 <div class="row blog blog-medium margin-bottom-40">
                     <div class="col-md-5">
-                        <img class="img-responsive" src="/assets/img/main/coming_soon.png" alt="">
+                        <img class="img-responsive" src="{% static "img/coming_soon.png"%}" alt="">
                     </div>
                     <div class="col-md-7">
                         <h2><a href="#">Coming Soon</a></h2>
@@ -79,7 +80,7 @@
                 <div class="posts margin-bottom-40">
                     <div class="headline headline-md"><h2>Recent Posts</h2></div>
                     <dl class="dl-horizontal">
-                        <dt><a href="#"><img src="/assets/img/main/coming_soon.png" alt="" /></a></dt>
+                        <dt><a href="#"><img src="{% static "img/coming_soon.png"%}" alt="" /></a></dt>
                         <dd>
                             <p><a href="#">Coming Soon.</a></p>
                         </dd>
@@ -97,21 +98,21 @@
     
     {% block extra-js %}
 <!-- JS Implementing Plugins -->
-<script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/back-to-top.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/smoothScroll.js"%}"></script>
 <!-- JS Customization -->
-<script type="text/javascript" src="/assets/js/custom.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/custom.js"%}"></script>
 <!-- JS Page Level -->
-<script type="text/javascript" src="/assets/js/app.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/app.js"%}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         App.init();
     });
 </script>
 <!--[if lt IE 9]>
-    <script src="/assets/plugins/respond.js"></script>
-    <script src="/assets/plugins/html5shiv.js"></script>
-    <script src="/assets/plugins/placeholder-IE-fixes.js"></script>
+    <script src="{% static "unify-v191/assets/plugins/respond.js"%}"></script>
+    <script src="{% static "unify-v191/assets/plugins/html5shiv.js"%}"></script>
+    <script src="{% static "unify-v191/assets/plugins/placeholder-IE-fixes.js"%}"></script>
 <![endif]-->
 
   {% endblock %}

@@ -55,8 +55,6 @@ def access_code(request):
         v_has_ac.visits += 1
         v_has_ac.save()
         request.session['access_code'] = ac.code
-        next = request.POST.get('next', '/')
-        next = '/' if next == '' else next
         return redirect(request.POST.get('next', '/'))
     return render(request, 'access_code.html', {'valid_code': check_code(request), 'next': request.GET.get('next', '/')})    
  
@@ -114,12 +112,12 @@ def staticpage(request, name):
     return render(request, name + '.html', {'valid_code': check_code(request)})    
 
 def handler404(request):
-    response = render_to_response('404.html', {'valid_code': check_code(request)}, context_instance=RequestContext(request))
+    response = render_to_response('404.html', {}, context_instance=RequestContext(request))
     response.status_code = 404
     return response
 
 def handler500(request):
-    response = render_to_response('500.html', {'valid_code': check_code(request)}, context_instance=RequestContext(request))
+    response = render_to_response('500.html', {}, context_instance=RequestContext(request))
     response.status_code = 500
     return response
 

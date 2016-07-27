@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'main',
     'life_log',
     'django_extensions',
+    'storages',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'thor_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/webapps/thor/thor_app/templates'],
+        'DIRS': ['/home/ubuntu/webapps/thor/thor_app/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,7 +92,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/webapps/thor/thor_app/log/thor_app.log',
+            'filename': '/home/ubuntu/webapps/thor/thor_app/log/thor_app.log',
             'formatter': 'verbose',
             'maxBytes': 1024 * 1024 * 10, # 10 MB
             'backupCount': 10,
@@ -141,11 +142,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+STATIC_ROOT = '/assets/'
+MEDIA_ROOT = '/media/'
+AWS_STORAGE_BUCKET_NAME = 'webapp-assets'
+S3_URL = 'http://s3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
+STATIC_URL = S3_URL + STATIC_ROOT
+STATICFILES_STORAGE = 'main.s3utils.StaticS3BotoStorage'
+DEFAULT_FILE_STORAGE = 'main.s3utils.StaticS3BotoStorage'
 
-STATIC_URL = '/assets/'
+MEDIA_URL = S3_URL + MEDIA_ROOT
 
 #    STATICFILES_DIRS = ('/webapps/thor/thor_app/assets/',)
-STATIC_ROOT = '/webapps/thor/thor_app/assets/'
+#STATIC_ROOT = '/home/ubuntu/webapps/thor/thor_app/assets/'
+STATIC_ROOT = 'http://s3.amazonaws.com/%s/assets/' % AWS_STORAGE_BUCKET_NAME
 
 # Sessions
 SESSION_COOKIE_AGE = 60 * 60 * 2 # 2 hours

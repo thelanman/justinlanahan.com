@@ -1,22 +1,31 @@
 {% extends 'base.html' %}
+{% load static from staticfiles %}
 {% block title %} Home {% endblock%}
 
 {% block extra-head %}
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="/assets/plugins/animate.css">
-    <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css">
-    <link rel="stylesheet" href="/assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/animate.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/line-icons/line-icons.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/font-awesome/css/font-awesome.min.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css" %}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css" %}">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/css/custom.css" %}">
+
+<style>
+.breadcrumbs-v3.banner-1 {
+  background: url({% static "img/banners/banner1.jpg" %}) no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+</style>
 
 {% endblock %}
 
 {% block body %}
     <!--=== Interactive Slider ===-->
-    <div class="breadcrumbs-v3 breadcrumbs-md img-v1">
+    <div class="breadcrumbs-v3 breadcrumbs-md banner-1">
         <div class="container">
             <h1>Justin Lanahan</h1>
             <p>Motivated Professional</p>
@@ -150,17 +159,17 @@
 
 {% block extra-js %}
 <!-- JS Implementing Plugins -->
-<script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
-<script type="text/javascript" src="/assets/plugins/jquery-appear.js"></script>
-<script type="text/javascript" src="/assets/plugins/jquery.parallax.js"></script>
-<script type="text/javascript" src="/assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/back-to-top.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/smoothScroll.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/jquery-appear.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/jquery.parallax.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js"%}"></script>
 <!-- JS Customization -->
-<script type="text/javascript" src="/assets/js/custom.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/custom.js"%}"></script>
 <!-- JS Page Level -->
-<script type="text/javascript" src="/assets/js/app.js"></script>
-<script type="text/javascript" src="/assets/js/plugins/progress-bar.js"></script>
-<script type="text/javascript" src="/assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/app.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/plugins/progress-bar.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js"%}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         $ = jQuery;

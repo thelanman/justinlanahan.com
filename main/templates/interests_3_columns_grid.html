@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
+{% load static from staticfiles %}
 {% block title %} Portfolio {% endblock %}
 {% block extra-head %}
     <!-- CSS Header and Footer -->
-    <link rel="stylesheet" href="/assets/css/headers/header-default.css">
-    <link rel="stylesheet" href="/assets/css/footers/footer-v1.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/css/headers/header-default.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/css/footers/footer-v1.css"%}">
 
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="/assets/plugins/animate.css">
-    <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css">
-    <link rel="stylesheet" href="/assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/animate.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/line-icons/line-icons.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/font-awesome/css/font-awesome.min.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css" %}">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/css/custom.css"%}">
 
     {% endblock %}
     {% block interests_active %}active{% endblock %}
@@ -44,7 +45,7 @@
             <div class="cbp-item recreation">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/piano.png" alt="">
+                        <img src="{% static "img/interests/piano.png"%}" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
@@ -59,7 +60,7 @@
             <div class="cbp-item recreation">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/sailing.png" alt="">
+                        <img src="{% static "img/interests/sailing.png"%}" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
@@ -74,7 +75,7 @@
             <div class="cbp-item recreation">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/gaming.png" alt="">
+                        <img src="{% static "img/interests/gaming.png"%}" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
@@ -89,7 +90,7 @@
             <div class="cbp-item recreation">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/travel.png" alt="">
+                        <img src="{% static "img/interests/travel.png"%}" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
@@ -104,7 +105,7 @@
             <div class="cbp-item research">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/programming.png" alt="">
+                        <img src="{% static "img/interests/programming.png"%}" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
@@ -119,7 +120,7 @@
             <div class="cbp-item research">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/machinelearning.png" alt="">
+                        <img src="{% static "img/interests/machinelearning.png"%}" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
@@ -134,7 +135,7 @@
             <div class="cbp-item research">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/investing.png" alt="">
+                        <img src="{% static "img/interests/investing.png"%}" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
@@ -149,7 +150,7 @@
             <div class="cbp-item recreation">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/tennis.png" alt="">
+                        <img src="{% static "img/interests/tennis.png" %}" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
@@ -164,7 +165,7 @@
             <div class="cbp-item research">
                 <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
-                        <img src="/assets/img/main/math.png" alt="">
+                        <img src="{% static "img/interests/math.png"%}" alt="">
                     </div>
                     <div class="cbp-caption-activeWrap">
                         <div class="cbp-l-caption-alignCenter">
@@ -187,14 +188,14 @@
         
   
     <!-- JS Implementing Plugins -->
-<script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
-<script type="text/javascript" src="/assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/back-to-top.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/smoothScroll.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js"%}"></script>
 <!-- JS Customization -->
-<script type="text/javascript" src="/assets/js/custom.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/custom.js"%}"></script>
 <!-- JS Page Level -->
-<script type="text/javascript" src="/assets/js/app.js"></script>
-<script type="text/javascript" src="/assets/js/plugins/cube-portfolio/cube-portfolio-3.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/app.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/plugins/cube-portfolio/cube-portfolio-3.js"%}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         App.init();

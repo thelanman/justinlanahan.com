@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
+{% load static from staticfiles %}
 {% block title %}Education{% endblock %}
 {% block experience_active %} active {% endblock %}
     {% block extra-head %}
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="/assets/plugins/animate.css">
-    <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/animate.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/line-icons/line-icons.css"%}">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/plugins/font-awesome/css/font-awesome.min.css"%}">
 
     <!-- CSS Page Style -->
-    <link rel="stylesheet" href="/assets/css/pages/shortcode_timeline2.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/css/pages/shortcode_timeline2.css"%}">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="stylesheet" href="{% static "unify-v191/assets/css/custom.css"%}">
     {% endblock %}
 
     {% block body %}
@@ -68,14 +69,14 @@
 
 {% block extra-js %}
 <!-- JS Implementing Plugins -->
-<script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
-<script type="text/javascript" src="/assets/plugins/circles-master/circles.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/back-to-top.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/smoothScroll.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/plugins/circles-master/circles.js"%}"></script>
 <!-- JS Customization -->
-<script type="text/javascript" src="/assets/js/custom.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/custom.js"%}"></script>
 <!-- JS Page Level -->
-<script type="text/javascript" src="/assets/js/app.js"></script>
-<script type="text/javascript" src="/assets/js/plugins/circles-master.js"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/app.js"%}"></script>
+<script type="text/javascript" src="{% static "unify-v191/assets/js/plugins/circles-master.js"%}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         App.init();
